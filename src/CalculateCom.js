@@ -1,50 +1,60 @@
 import React, { Component } from 'react';
+import ResultCom from './ResultCom';
 
 const divStyle = {
   width: '50px',
   margin:'5px',
 };
 
- var button1 = 0;
- var button2 = 0;
- var button3 = 0;
 class CalculateCom extends Component {   
 
-    constructor(props) {
-        super(props);
+    state = {
+        bu1:0,
+        bu2:0,
+        bu3:0,
+        result:0
+    };
 
-        this.state = {
-            post: this.props.data,
-            bu1: '5'
-        };
-    }
     changebutton1Value(event)
     {
-        return this.setState({bu1: this.state.bu1});
+        this.setState({bu1: event.target.value}); 
+        this.calculateFun();        
     }
 
     changebutton2Value(event)
     {
-        alert(event.target.value);
-        button2= event.target.value;
+        this.setState({bu2:  event.target.value});
+        this.calculateFun();
     }
 
     changebutton3Value(event)
     {
-        alert(event.target.value);
-        button3= event.target.value;
+        this.setState({bu3:  event.target.value});
+        this.calculateFun();
+    }
+
+    calculateFun()
+    {
+        console.log(this.state.bu1);
+         console.log(this.state.bu2);
+          console.log(this.state.bu3);
+        var num = this.state.bu1 + this.state.bu2 - this.state.bu3;
+        console.log(num);
+        this.setState({result:num});
     }
 
     render() {
-        var tx = this.state.bu1;
         return (
             <div>
-                <div>
-                    <input type="text" style={divStyle} onChange={this.changebutton1Value.bind(this)}/>
+                <div style={{display: 'inline-block'}}>
+                    <input type="text" value={this.state.bu1} style={divStyle} onChange={this.changebutton1Value.bind(this)}/>
                     <input type="button" value="+" style={divStyle} />
-                    <input type="text"  value={tx} style={divStyle} />
+                    <input type="text"  value={this.state.bu2} style={divStyle} onChange={this.changebutton2Value.bind(this)}/>
                     <input type="button" value="-" style={divStyle} />
-                    <input type="text" style={divStyle} />
+                    <input type="text" value={this.state.bu3} style={divStyle} onChange={this.changebutton3Value.bind(this)}/>
+                </div>
+                <div style={{display: 'inline-block'}}>
+                 <ResultCom result={this.state.result} />
                 </div>
             </div>           
         )

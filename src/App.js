@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import CalculateCom from './CalculateCom';
-import ResultCom from './ResultCom';
 
 class App extends Component {
     render() {
@@ -8,7 +7,6 @@ class App extends Component {
             <div>
                 Hello, World.
                 <CalculateCom />
-                <ResultCom />
             </div>
         )
     }
