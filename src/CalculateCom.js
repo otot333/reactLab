@@ -36,8 +36,8 @@ class CalculateCom extends Component {
     calculateFun()
     {
         console.log(this.state.bu1);
-         console.log(this.state.bu2);
-          console.log(this.state.bu3);
+        console.log(this.state.bu2);
+        console.log(this.state.bu3);
         var num = this.state.bu1 + this.state.bu2 - this.state.bu3;
         console.log(num);
         this.setState({result:num});
