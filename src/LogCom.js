@@ -5,7 +5,14 @@ const spanStyle = {
   margin:'5px',
 };
 
+
 class LogCom extends Component {
+
+    DelLog(op,val)
+    {
+        this.props.delAct(op,val);
+    }
+
     render() {
         return (
             <div>  
@@ -18,11 +25,13 @@ class LogCom extends Component {
                         </tr>
                     </thead>
                         <tbody>
-                                {this.props.log.map((val, index ) => {
+                                {this.props.log.map((val, index ) => (
                                     <tr>
-                                        <td>123</td>
+                                        <td style={{ border : '1px solid black', borderCollapse:'collapse'}}>{val.operand}</td>
+                                        <td style={{ border : '1px solid black', borderCollapse:'collapse'}}>{val.value}</td>   
+                                        <td><input type="button" value="del"  onClick={(e)=> this.DelLog(val.operand,val.value)}/> </td>
                                     </tr>
-                                })}
+                                ))}
                                 
                                
                         </tbody>

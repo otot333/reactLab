@@ -13,8 +13,8 @@ class CalculateCom extends Component {
         this.state = {
            buttonValue:[0,0,0],
            result:0,
-           operand:"1",
-           log:[{"1":123}]
+           operand:"+",
+           log:[{operand:'+',value:'2'}]
         };
     }
     
@@ -31,7 +31,7 @@ class CalculateCom extends Component {
             result = result - parseInt(val);
         }
         var {log} = this.state;
-        log.push({operand:val});
+        log.push({operand:operand,value:val});
         this.setState({result:result,log:log});
         
     }
@@ -41,14 +41,19 @@ class CalculateCom extends Component {
         var {operand} = this.state;
         this.setState({operand:val});        
     }
+
+    DelAct(op,val)
+    {
+        alert(op);
+    }
     
     render() {
         return (
             <div>
                 <div style={{display: 'inline-block'}}>
-                    <input type="button" value="1" style={divStyle} onClick={(e) => this.AddResult(1,0)}/>
-                    <input type="button" value="2" style={divStyle} onClick={(e) => this.AddResult(2,0)}/>
-                    <input type="button" value="3" style={divStyle} onClick={(e) => this.AddResult(3,0)}/>
+                    <input type="button" value="1" style={divStyle} onClick={(e) => this.AddResult(1)}/>
+                    <input type="button" value="2" style={divStyle} onClick={(e) => this.AddResult(2)}/>
+                    <input type="button" value="3" style={divStyle} onClick={(e) => this.AddResult(3)}/>
                     <input type="button" value="+" style={divStyle} onClick={(e) => this.DecidedOperator('+',0)}/>
                     <input type="button" value="-" style={divStyle} onClick={(e) => this.DecidedOperator('-',0)}/>                   
                 </div>
@@ -58,7 +63,7 @@ class CalculateCom extends Component {
                 
                 <div>
                     <span>Log History</span>
-                    <LogCom log={this.state.log} />
+                    <LogCom log={this.state.log} delAct={this.DelAct}/>
                 </div>
             </div>           
         )
