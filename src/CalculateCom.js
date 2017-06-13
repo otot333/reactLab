@@ -1,37 +1,22 @@
 import React, { Component } from 'react';
 import ResultCom from './ResultCom';
+import LogCom from './LogCom';
 
 const divStyle = {
   width: '50px',
   margin:'5px',
 };
+
 class CalculateCom extends Component {   
     constructor(props){
         super(props);
         this.state = {
            buttonValue:[0,0,0],
            result:0,
-           operand:"+",
-           log:[]
+           operand:"1",
+           log:[{"1":123}]
         };
     }
-    changebutton1Value(event, idx)
-    {
-        const {buttonValue} = this.state;
-        buttonValue[idx] = parseInt(event.target.value);
-        this.calculateFun(buttonValue);        
-    }
-
-    calculateFun(val)
-    {
-        var num = val[0] + val[1] - val[2];
-        this.setState({result:num});
-    }
-//  <input type="text" value={this.state.buttonValue[0]} style={divStyle} onChange={(e)=>this.changebutton1Value(e, 0)}/>
-//                     <input type="button" value="+" style={divStyle} />
-//                     <input type="text"  value={this.state.buttonValue[1]} style={divStyle} onChange={(e)=>this.changebutton1Value(e, 1)}/>
-//                     <input type="button" value="-" style={divStyle} />
-//                     <input type="text" value={this.state.buttonValue[2]} style={divStyle} onChange={(e)=>this.changebutton1Value(e, 2)}/>
     
     AddResult(val)
     {
@@ -69,10 +54,11 @@ class CalculateCom extends Component {
                 </div>
                 <div style={{display: 'inline-block'}}>
                  <ResultCom result={this.state.result} />
-                </div>
+                </div> 
                 
                 <div>
                     <span>Log History</span>
+                    <LogCom log={this.state.log} />
                 </div>
             </div>           
         )
