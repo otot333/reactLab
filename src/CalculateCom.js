@@ -16,6 +16,7 @@ class CalculateCom extends Component {
            operand:"+",
            log:[]
         };
+        // this.DelAct = this.DelAct.bind(this);
     }
     
     AddResult(val)
@@ -42,9 +43,9 @@ class CalculateCom extends Component {
         this.setState({operand:val});        
     }
 
-    DelAct(op,val)
+    DelAct = (op,val,index) =>
     {
-        var {result} = this.state;
+        let {result} = this.state;
         if(op === '+')
         {
             result = result - parseInt(val);
@@ -53,7 +54,14 @@ class CalculateCom extends Component {
         {
             result = result + parseInt(val);
         }
-        this.setState({result:result});
+        let {log:newLog} = this.state;
+        
+        newLog = this.state.log.filter((value,key)=>{
+            return key != index
+        });
+        console.log(newLog);
+
+        this.setState({result:result , log:newLog});
     }
     
     render() {

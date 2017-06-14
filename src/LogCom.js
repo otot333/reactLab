@@ -8,9 +8,10 @@ const spanStyle = {
 
 class LogCom extends Component {
 
-    DelLog(op,val)
+    DelLog(op,val,index)
     {
-        this.props.delAct(op,val);
+        // console.log(op,val);
+        this.props.delAct(op,val,index);
     }
 
     render() {
@@ -26,10 +27,10 @@ class LogCom extends Component {
                     </thead>
                         <tbody>
                                 {this.props.log.map((val, index ) => (
-                                    <tr>
+                                    <tr key={index.toString()}>
                                         <td style={{ border : '1px solid black', borderCollapse:'collapse'}}>{val.operand}</td>
                                         <td style={{ border : '1px solid black', borderCollapse:'collapse'}}>{val.value}</td>   
-                                        <td><input type="button" value="del"  onClick={(e)=> this.DelLog(val.operand,val.value)}/> </td>
+                                        <td><input type="button" value="del"  onClick={(e)=> this.DelLog(val.operand,val.value,index)}/> </td>
                                     </tr>
                                 ))}
                                 
