@@ -14,7 +14,7 @@ class CalculateCom extends Component {
            buttonValue:[0,0,0],
            result:0,
            operand:"+",
-           log:[{operand:'+',value:'2'}]
+           log:[]
         };
     }
     
@@ -22,11 +22,11 @@ class CalculateCom extends Component {
     {
         var {result} = this.state;
         var {operand} = this.state;
-        if(operand == '+')
+        if(operand === '+')
         {
             result = result + parseInt(val);
         }
-        if(operand == '-')
+        if(operand === '-')
         {
             result = result - parseInt(val);
         }
@@ -44,7 +44,16 @@ class CalculateCom extends Component {
 
     DelAct(op,val)
     {
-        alert(op);
+        var {result} = this.state;
+        if(op === '+')
+        {
+            result = result - parseInt(val);
+        }
+        if(op === '-')
+        {
+            result = result + parseInt(val);
+        }
+        this.setState({result:result});
     }
     
     render() {

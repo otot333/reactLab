@@ -21,7 +21,7 @@ class LogCom extends Component {
                         <tr>
                             <th style={{ border : '1px solid black', borderCollapse:'collapse'}}>Operand</th>
                             <th style={{ border : '1px solid black', borderCollapse:'collapse'}}>Value</th>        
-                            <th>{this.props.log.length}</th>                   
+                            <th></th>                   
                         </tr>
                     </thead>
                         <tbody>
