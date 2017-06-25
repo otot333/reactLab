@@ -21,7 +21,9 @@ const NewCalculateCom = ({
                     <input type="button" value="+" style={divStyle} />
                     <input type="button" value="-" style={divStyle} />                   
                 </div>
+                <div style={{display: 'inline-block'}}>
                
+                </div> 
             </div>    
 
     )

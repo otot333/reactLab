@@ -11,7 +11,7 @@ class ResultCom extends Component {
         return (
             <div>
                          
-                <div style={{display: 'inline-block'}}><span style={spanStyle} >{this.props.result}</span></div>
+                <div style={{display: 'inline-block'}}><span style={spanStyle} ></span></div>
             </div>           
         )
     }
