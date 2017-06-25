@@ -17,7 +17,7 @@ if(process.env.NODE_ENV ==='production')
 }
 else
 {
-    stop = devStore;
+    store = devStore;
 }
 
 module.exports = store;

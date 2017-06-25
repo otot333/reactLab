@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ResultCom from './ResultCom';
 import LogCom from './LogCom';
+import { connect } from 'react-redux';
+import action from './Action';
 
 const divStyle = {
   width: '50px',
