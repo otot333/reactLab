@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import action from './action';
 import store from './store';
+import LogCom from './LogCom';
+
+
 const divStyle = {
   width: '50px',
   margin:'5px',
@@ -11,7 +14,8 @@ const divStyle = {
 const NewCalculateCom = ({
     calValue,
     changeOpt,
-    value
+    value,
+    history
 }) =>
 {
     return (
@@ -24,8 +28,9 @@ const NewCalculateCom = ({
                     <input type="button" value="-" style={divStyle} onClick={() => changeOpt('-')}/>                   
                 </div>
                 <div style={{display: 'inline-block'}}>
-                     {value}
-                </div> 
+                     <span>{value}</span>
+                </div>
+                 <LogCom />
             </div>  
     )
 }

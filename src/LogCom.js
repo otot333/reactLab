@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import action from './action';
+import store from './store';
 
 const spanStyle = {
   width: '50px',
@@ -7,14 +10,8 @@ const spanStyle = {
 
 
 class LogCom extends Component {
-
-    DelLog(op,val,index)
-    {
-        // console.log(op,val);
-        this.props.delAct(op,val,index);
-    }
-
     render() {
+        const {revertLog} = this.props;
         return (
             <div>  
                 <table style={{ border : '1px solid black', borderCollapse:'collapse'}}>
@@ -26,15 +23,13 @@ class LogCom extends Component {
                         </tr>
                     </thead>
                         <tbody>
-                                {this.props.log.map((val, index ) => (
+                                {this.props.history.map((val, index ) => (
                                     <tr key={index.toString()}>
-                                        <td style={{ border : '1px solid black', borderCollapse:'collapse'}}>{val.operand}</td>
-                                        <td style={{ border : '1px solid black', borderCollapse:'collapse'}}>{val.value}</td>   
-                                        <td><input type="button" value="del"  onClick={(e)=> this.DelLog(val.operand,val.value,index)}/> </td>
+                                        <td style={{ border : '1px solid black', borderCollapse:'collapse'}}>{val.opt}</td>
+                                        <td style={{ border : '1px solid black', borderCollapse:'collapse'}}>{val.val}</td>   
+                                        <td><input type="button" value="del"  onClick={()=>revertLog(val.opt, val.val, index)}/> </td>
                                     </tr>
-                                ))}
-                                
-                               
+                                ))}      
                         </tbody>
                 </table>
             </div>           
@@ -42,5 +37,17 @@ class LogCom extends Component {
     }
 }
 
-module.exports = LogCom;
+const mapStateToProps = (state) => {
+    return state;
+}
+
+const mapDispatchToProps = (dispatch) => ({
+    revertLog: (opt,val,index) => dispatch(action.REVERTLOG(opt,val,index)),
+});
+
+module.exports = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LogCom);
+
 
