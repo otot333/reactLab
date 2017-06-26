@@ -1,18 +1,32 @@
-import {PLUS,MINUS} from './Actiontype';
+import {PLUS, MINUS, CHANGEOBT} from './Actiontype';
 
-const Reducer = (state = 0, action) =>
+const initState = {
+    value: 0,
+    opt: '+',
+};
+
+const Reducer = (state = initState, action) =>
 {
     switch(action.type)
     {
         case PLUS:        
-            return state + 1;
+            return {
+                ...state,
+                value:state.value + action.val
+            };
         case MINUS:
-            return state - 1;
-        case defaultStatus:
+            return {
+                ...state,
+                value:state.value - action.val
+            };
+        case CHANGEOBT:
+            return {
+                ...state,
+                opt:action.opt
+            }
+        default:
             return state;
-
     }
-
 }
 
 module.exports = Reducer;

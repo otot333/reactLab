@@ -7,8 +7,9 @@ const divStyle = {
   margin:'5px',
 };
 
+
 const NewCalculateCom = ({
-    result,
+    value,
     plus,
     minus
 }) =>
@@ -23,20 +24,24 @@ const NewCalculateCom = ({
                     <input type="button" value="-" style={divStyle} onClick={PrintStore}/>                   
                 </div>
                 <div style={{display: 'inline-block'}}>
-                     {result}
+                     {value}
                 </div> 
-            </div>    
-
+            </div>  
     )
+}
+
+const ChagneOp = ()=>
+{
+
 
 }
 
 const mapStateToProps = (state) => {
-    return { result: state };
+    return state;
 }
 const mapDispatchToProps = (dispatch) => ({
-    plus: () => dispatch(action.PLUS()),
-    minus: () => dispatch(action.MINUS())
+    plus: () => dispatch(action.PLUS(6)),
+    minus: () => dispatch(action.MINUS(6))
 });
 
 const PrintStore = ()=>

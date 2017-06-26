@@ -1,6 +1,7 @@
 const ActionType = {
     PLUS:'PLUS',
-    MINUS:'MINUS'
+    MINUS:'MINUS',
+    CHANGEOBT:'CHANGEOBT'    
 }
 
 module.exports = ActionType;
