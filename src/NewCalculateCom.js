@@ -9,19 +9,19 @@ const divStyle = {
 
 
 const NewCalculateCom = ({
-    value,
-    plus,
-    minus
+    calValue,
+    changeOpt,
+    value
 }) =>
 {
     return (
             <div>
                 <div style={{display: 'inline-block'}}>
-                    <input type="button" value="1" style={divStyle} onClick={plus}/>
-                    <input type="button" value="2" style={divStyle} onClick={minus}/>
-                    <input type="button" value="3" style={divStyle} />
-                    <input type="button" value="+" style={divStyle} />
-                    <input type="button" value="-" style={divStyle} onClick={PrintStore}/>                   
+                    <input type="button" value="1" style={divStyle} onClick={() => calValue(1)}/>
+                    <input type="button" value="2" style={divStyle} onClick={() => calValue(2)}/>
+                    <input type="button" value="3" style={divStyle} onClick={() => calValue(3)}/>
+                    <input type="button" value="+" style={divStyle} onClick={() => changeOpt('+')}/>       
+                    <input type="button" value="-" style={divStyle} onClick={() => changeOpt('-')}/>                   
                 </div>
                 <div style={{display: 'inline-block'}}>
                      {value}
@@ -29,26 +29,18 @@ const NewCalculateCom = ({
             </div>  
     )
 }
-
-const ChagneOp = ()=>
-{
-
-
-}
-
 const mapStateToProps = (state) => {
     return state;
 }
 const mapDispatchToProps = (dispatch) => ({
-    plus: () => dispatch(action.PLUS(6)),
-    minus: () => dispatch(action.MINUS(6))
+    calValue: (val) => dispatch(action.CALVALUE(val)),
+    changeOpt: (opt) => dispatch(action.CHANGEOPT(opt))
 });
 
 const PrintStore = ()=>
 {
    console.log(store.getState());
 }
-
 
 module.exports = connect(
     mapStateToProps,

@@ -4,7 +4,7 @@ import WebpackDevServer from 'webpack-dev-server';
 import config from './webpack.config';
 
 const HOST = 'localhost';
-const PORT = 8888;
+const PORT = 9487;
 
 const server = new WebpackDevServer(webpack(config), {
     contentBase: path.join(__dirname, 'output'),

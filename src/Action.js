@@ -1,10 +1,9 @@
-import {PLUS,MINUS,CHANGEOBT} from './ActionType';
+import {CALVALUE,CHANGEOPT} from './ActionType';
 
 
 const action = {
-    PLUS: (val) => ({type: PLUS, val}),
-    MINUS: (val) => ({type: MINUS, val}),
-    CHANGEOBT:(opt) =>({type:CHANGEOBT,opt})
+    CALVALUE: (val) => ({type: CALVALUE, val}),
+    CHANGEOPT:(opt) => ({type: CHANGEOPT, opt})
 }
 
 module.exports = action;
