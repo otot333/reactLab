@@ -1,9 +1,11 @@
 import reducer from './reducer';
-import { createStore } from 'redux';
-import { devToolsEnhancer} from 'redux-devtools-extension';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools} from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
+const middleware = applyMiddleware(thunk);
 
-const devStore = createStore(reducer, devToolsEnhancer());
-const prodStore = createStore(reducer);
+const devStore = createStore(reducer, composeWithDevTools(middleware));
+const prodStore = createStore(reducer, middleware);
 
 module.hot && module.hot.accept('./reducer.js', () => {
     const nextReducer = require('./reducer');
