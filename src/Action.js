@@ -1,4 +1,4 @@
-import {CALVALUE,CHANGEOPT,REVERTLOG,FETCHDATASUCCESS} from './ActionType';
+import {CALVALUE,CHANGEOPT,REVERTLOG,FETCHDATASUCCESS,SAVEHISTORY} from './ActionType';
 import 'whatwg-fetch';
 
 const action = {
@@ -15,7 +15,14 @@ const action = {
             }))
         }
     },
-    FETCHDATASUCCESS:(value) => ({ type:FETCHDATASUCCESS})
+    FETCHDATASUCCESS:(value) => ({ type:FETCHDATASUCCESS}),
+    saveHistory()
+    {      
+        return () =>
+        {
+            fs.unlink('/data/data.json');
+        }
+    }
 }
 
 module.exports = action;
