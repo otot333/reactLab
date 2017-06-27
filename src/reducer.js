@@ -1,4 +1,4 @@
-import {CALVALUE, CHANGEOPT, PUSHLOG, REVERTLOG} from './Actiontype';
+import {CALVALUE, CHANGEOPT, PUSHLOG, REVERTLOG, FETCHDATASUCCESS} from './Actiontype';
 
 const initState = {
     value: 0,
@@ -8,17 +8,17 @@ const initState = {
 
 const Reducer = (state = initState, action) =>
 {    
-    
+    let history = state.history;
     switch(action.type)
     {
         case CALVALUE:   
-            state.history.push({opt:state.opt,val:action.val});
+            history.push({opt:state.opt,val:action.val});
             if(state.opt === '+')
             {
                 return {
                     ...state,
                     value:state.value + action.val,
-                    history:state.history
+                    history:history
                 };
             }
             else
@@ -26,7 +26,7 @@ const Reducer = (state = initState, action) =>
                 return {
                     ...state,
                     value:state.value - action.val,
-                    history:state.history
+                    history:history
                 };
             }
 
@@ -36,7 +36,7 @@ const Reducer = (state = initState, action) =>
                 opt:action.opt
             }
         case REVERTLOG:
-            const history = state.history.filter((value,key)=>{
+            history = state.history.filter((value,key)=>{
                 return key != action.index
             });
 
@@ -52,10 +52,27 @@ const Reducer = (state = initState, action) =>
                 return{
                     ...state,
                     value:state.value + action.val,
-                    history:state.history
+                    history,
                 }
             }
-
+        case FETCHDATASUCCESS:
+            const logHistory = action.value;
+            let result = 0;
+            logHistory.map((val,index) => {
+                if(val.opt === "+")
+                {
+                    result = result + val.val;
+                }
+                else
+                {
+                    result = result - val.val;
+                }
+            });
+            return {
+                ...state,
+                history:logHistory,
+                value:result
+            }
         default:
             return state;
     }

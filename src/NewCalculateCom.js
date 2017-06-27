@@ -12,10 +12,13 @@ const divStyle = {
 
 
 const NewCalculateCom = ({
+    state:{
+        value,
+        history
+    },
     calValue,
-    changeOpt,
-    value,
-    history
+    changeOpt,    
+    gethistory
 }) =>
 {
     return (
@@ -25,9 +28,10 @@ const NewCalculateCom = ({
                     <input type="button" value="2" style={divStyle} onClick={() => calValue(2)}/>
                     <input type="button" value="3" style={divStyle} onClick={() => calValue(3)}/>
                     <input type="button" value="+" style={divStyle} onClick={() => changeOpt('+')}/>       
-                    <input type="button" value="-" style={divStyle} onClick={() => changeOpt('-')}/>                   
+                    <input type="button" value="-" style={divStyle} onClick={() => changeOpt('-')}/>      
+                    <input type="button" value="GetHistory" style={{width:'100px'}}  onClick={()=>gethistory()}/>      
                 </div>
-                <div style={{display: 'inline-block'}}>
+                <div style={{display: 'inline-block',margin: '5px 5px'}}>
                      <span>{value}</span>
                 </div>
                  <LogCom />
@@ -35,11 +39,12 @@ const NewCalculateCom = ({
     )
 }
 const mapStateToProps = (state) => {
-    return state;
+    return {state};
 }
 const mapDispatchToProps = (dispatch) => ({
     calValue: (val) => dispatch(action.CALVALUE(val)),
-    changeOpt: (opt) => dispatch(action.CHANGEOPT(opt))
+    changeOpt: (opt) => dispatch(action.CHANGEOPT(opt)),
+    gethistory: () => dispatch(action.fetchHistory())
 });
 
 const PrintStore = ()=>

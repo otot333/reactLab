@@ -11,7 +11,7 @@ const spanStyle = {
 
 class LogCom extends Component {
     render() {
-        const {revertLog} = this.props;
+        const {revertLog,history} = this.props;
         return (
             <div>  
                 <table style={{ border : '1px solid black', borderCollapse:'collapse'}}>
@@ -23,7 +23,7 @@ class LogCom extends Component {
                         </tr>
                     </thead>
                         <tbody>
-                                {this.props.history.map((val, index ) => (
+                                {history.map((val, index ) => (
                                     <tr key={index.toString()}>
                                         <td style={{ border : '1px solid black', borderCollapse:'collapse'}}>{val.opt}</td>
                                         <td style={{ border : '1px solid black', borderCollapse:'collapse'}}>{val.val}</td>   
